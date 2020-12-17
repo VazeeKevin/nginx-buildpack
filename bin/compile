@@ -79,6 +79,12 @@ fi
 `tail_log_plex ${LOG_FILES[@]}`
 
 (
+    COMMAND=${@:$n}
+    $COMMAND
+    echo "app" > \$pmsgr
+) &
+
+(
     nginx -p "\$basedir/vendor/nginx" -c "\$basedir/vendor/nginx/conf/nginx.conf"
     echo "nginx" > \$pmsgr
 ) &
